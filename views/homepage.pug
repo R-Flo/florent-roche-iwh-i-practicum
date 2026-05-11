@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Board Game Collection
+        p.intro Browse the games tracked in our HubSpot Board Game custom object.
+        a.btn(href="/update-cobj") Add to this table
+        if games && games.length
+            table.games-table
+                thead
+                    tr
+                        th Name
+                        th Genre
+                        th Min Players
+                        th Max Players
+                        th Play Time (min)
+                tbody
+                    each game in games
+                        tr
+                            td= game.properties.name
+                            td= game.properties.genre
+                            td= game.properties.min_players
+                            td= game.properties.max_players
+                            td= game.properties.play_time_minutes
+        else
+            p.empty No board games found yet. Use the form to add the first one.

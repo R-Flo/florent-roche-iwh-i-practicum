@@ -1,28 +1,48 @@
-# Welcome to the Integrating With HubSpot I: Foundations Practicum
+# Integrating With HubSpot I: Foundations Practicum — Board Game Collection
 
-This repository is for the Integrating With HubSpot I: Foundations course. This practicum is one of two requirements for receiving your Integrating With HubSpot I: Foundations certification. You must also take the exam and receive a passing grade (at least 75%).
+This repository is my submission for the [Integrating With HubSpot I: Foundations](https://app.hubspot.com/academy/) practicum. It is a small Node + Express + Pug app that reads and writes records of a `Board Game` custom object in a HubSpot developer test account.
 
-To read the full directions, please go to the [practicum instructions](https://app.hubspot.com/academy/l/tracks/1092124/1093824/5493?language=en).
+**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/51453911/objects/62299495/views/all/list
 
-**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/l/objects/${custom-obj-number}/views/all/list
+## What the app does
 
-___
-## Tips:
-- Commit to your repository often. Even if you make small tweaks to your code, it’s best to be committing to your repository frequently.
-- The subject of the custom object is up to you. Feel free to get creative!
-- Please create a test account and include your private app access token in your repo.
-- Ensure you re-merge any working branches into the main branch.
-- DO NOT ADD YOUR PRIVATE APP TOKEN TO YOUR REPOSITORY. 
+- `GET /` — fetches every record from the `Board Game` custom object via the HubSpot CRM API and renders a table with name, genre, min/max players and play time.
+- `GET /update-cobj` — renders a Pug form that lets the user add a new board game.
+- `POST /update-cobj` — submits the form data, creates a new custom-object record through the API and redirects back to the homepage.
 
-## Pre-requisites:
-- Using [Node](https://nodejs.org/en/download) and node packages
-- Using [Express](https://expressjs.com/en/starter/installing.html)
-- Using [Axios](https://axios-http.com/docs/intro)
-- Using [Pug templating system](https://pugjs.org/api/getting-started.html)
-- Using the command line
-- Using [Git and GitHub](https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners)
+## Custom object
 
-## Requirements
-- All work must be your own. During the grading process we will check the revision history. Submissions that do not meet this requirement will not be considered.
-- You must have at least two new routes in your index.js file and one new pug template for the homepage.
-- You must create a developer test account and link to it in your README.md file. Submissions that do not meet this requirement will not be considered.
+- Object name: `board_game` (singular `Board Game`, plural `Board Games`)
+- Object type ID: `2-62299495`
+- Properties used by the app:
+  - `name` (string, required) — the name of the board game
+  - `genre` (string) — e.g. Strategy, Co-op, Party
+  - `min_players` (number)
+  - `max_players` (number)
+  - `play_time_minutes` (number)
+- Associated with: `Contacts`
+
+## Running locally
+
+1. Clone this repository.
+2. Copy `.env.example` to `.env` and paste your HubSpot private app access token into `PRIVATE_APP_ACCESS`.
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the app:
+   ```
+   npm start
+   ```
+5. Open <http://localhost:3000>.
+
+The token is loaded with `dotenv` and **never committed** (the `.env` file is git-ignored).
+
+## HubSpot setup recap
+
+This app expects:
+- A developer test account with the `board_game` custom object defined and associated with Contacts.
+- A private app with these scopes:
+  - `crm.schemas.custom` (read, write)
+  - `crm.objects.custom` (read, write)
+  - `crm.objects.contacts` (read, write)

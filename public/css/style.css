@@ -56,3 +56,51 @@ input[type="submit"] {
     padding: .375rem 1rem;
     margin-top: 10px;
 }
+
+input[type="number"] {
+    padding: .25rem;
+}
+
+.intro {
+    margin: 0 1rem 1rem;
+    color: #555;
+}
+
+.btn, .btn-link {
+    display: inline-block;
+    margin: 0 1rem 1rem;
+    padding: .5rem 1rem;
+    background-color: #ff7a59;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-link {
+    background-color: transparent;
+    color: #ff7a59;
+    padding: .5rem 0;
+}
+
+.games-table {
+    margin: 1rem;
+    border-collapse: collapse;
+    width: calc(100% - 2rem);
+}
+
+.games-table th,
+.games-table td {
+    border: 1px solid lightgrey;
+    padding: .5rem 1rem;
+    text-align: left;
+}
+
+.games-table thead {
+    background-color: #f5f8fa;
+}
+
+.empty {
+    margin: 1rem;
+    color: #888;
+    font-style: italic;
+}

@@ -1,0 +1,26 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Add a Board Game
+        a.btn-link(href="/") Return to the homepage
+        form.form-wrapper(action="/update-cobj" method="POST")
+            label(for="name") Name
+            input#name(type="text" name="name" required placeholder="e.g. Catan")
+
+            label(for="genre") Genre
+            input#genre(type="text" name="genre" required placeholder="e.g. Strategy")
+
+            label(for="min_players") Minimum players
+            input#min_players(type="number" name="min_players" min="1" required placeholder="e.g. 2")
+
+            label(for="max_players") Maximum players
+            input#max_players(type="number" name="max_players" min="1" required placeholder="e.g. 6")
+
+            label(for="play_time_minutes") Play time (minutes)
+            input#play_time_minutes(type="number" name="play_time_minutes" min="1" required placeholder="e.g. 60")
+
+            input(type="submit" value="Add board game")
